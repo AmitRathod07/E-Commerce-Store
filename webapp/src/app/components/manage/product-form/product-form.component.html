@@ -1,0 +1,75 @@
+<!-- Start with this link = https://www.youtube.com/watch?v=N-2G1pNWDi0&list=PL1fhe5A01vQEGcHsPyQk3otWTrq6b9XXB&index=3&t=3793 -->
+
+<div class="flex flex-col items-left px-40 mt-10">
+    <h1 class="text-3xl font-bold mb-10">{{isEdit ? 'Update' : 'Add New'}} Product</h1>
+    <form 
+    class="shadow p-4" [formGroup]="productForm" (ngSubmit)="submit()">
+        <div class="flex flex-wrap">
+            <mat-form-field class="w-full">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="categoryId">
+                    @for (item of categories; track $index) {
+                        <mat-option [value]="item._id">{{ item.name }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Brand</mat-label>
+                <mat-select formControlName="brandId">
+                    @for (item of brands; track $index) {
+                        <mat-option [value]="item._id">{{ item.name }}</mat-option>
+                    }                    
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" formControlName="name" />
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Short Description</mat-label>
+                <input matInput type="text" formControlName="shortDescription" />
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Descripition</mat-label>
+                <textarea matInput type="text" formControlName="description" rows="5"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" formControlName="Price" />
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Discount</mat-label>
+                <input matInput type="text" formControlName="discount" />
+            </mat-form-field>
+
+            <div class="w-full flex flex-col" formArrayName="images">
+                <div class="flex justify-between mb-4">
+                    <h4>Images</h4>
+                    <div class="flex justify-right gap-4">
+                        <button mat-raised-button color="primary" (click)="addImage()">
+                            Add Image
+                        </button>
+                        <button mat-raised-button color="primary" (click)="removeImage()">
+                            Remove Image
+                        </button>
+                    </div>
+                </div>
+                @for (item of images.controls; track $index) {
+                    <mat-form-field class="w-full">
+                        <mat-label>Images {{$index + 1}}</mat-label>
+                        <input matInput type="text" [formControlName]="$index" />
+                    </mat-form-field>
+                }                
+            </div>
+        </div>
+        <div class="w-full flex justify-left">
+            <button mat-raised-button color="primary" [disabled]="productForm.invalid">{{ isEdit ? 'Edit' : 'Add' }} Product</button>
+        </div>
+    </form>
+</div>

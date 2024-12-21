@@ -4,14 +4,14 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CategoryService } from '../../../services/category-service/category.service';
+import { BrandService } from '../../../services/brand-service/brand.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Category } from '../../../types/category';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'app-brands',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -22,24 +22,23 @@ import { Category } from '../../../types/category';
     MatIconModule,
     RouterLink
   ],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss'
+  templateUrl: './brands.component.html',
+  styleUrl: './brands.component.scss'
 })
-
-export class CategoriesComponent implements OnInit, AfterViewInit{
+export class BrandsComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  categoryService = inject(CategoryService);
+  brandService = inject(BrandService);
   constructor() {
     this.dataSource = new MatTableDataSource([] as any);
   }
 
   ngOnInit() {
-    this.getCategories();    
+    this.getFormBrands();    
   }
 
   ngAfterViewInit() {
@@ -47,12 +46,12 @@ export class CategoriesComponent implements OnInit, AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe((res: any) => {
+  getFormBrands(){
+    this.brandService.getBrands().subscribe((res: any) => {
       if (res) {
         this.dataSource = new MatTableDataSource(res);
       } else {
-        alert("Cantegories is empty!!!");
+        alert("Brands is empty!!!");
       }
     },
     (error) => {
@@ -63,15 +62,15 @@ export class CategoriesComponent implements OnInit, AfterViewInit{
     });
   }
 
-  deleteCategory(id: string){
-    this.categoryService.deleteCategory(id).subscribe((res: any) => {
-      alert("Category is Deleted!!");
+  deleteFormBrand(id: string){
+    this.brandService.deleteBrand(id).subscribe((res: any) => {
+      alert("Brand is Deleted!!");
     },
     (error) => {
       alert("Error: " + error);
     },
     () => {
-      this.getCategories();
+      this.getFormBrands();
     });
   }
 

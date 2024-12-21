@@ -4,14 +4,14 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CategoryService } from '../../../services/category-service/category.service';
+import { ProductService } from '../../../services/product-service/product.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Category } from '../../../types/category';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'app-products',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -22,24 +22,23 @@ import { Category } from '../../../types/category';
     MatIconModule,
     RouterLink
   ],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss'
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss'
 })
-
-export class CategoriesComponent implements OnInit, AfterViewInit{
-  displayedColumns: string[] = ['id', 'name', 'actions'];
+export class ProductsComponent implements OnInit, AfterViewInit{
+  displayedColumns: string[] = ['id', 'name', 'shortDescription', 'description', 'price', 'discount', 'actions'];
   dataSource: MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  categoryService = inject(CategoryService);
+  productService = inject(ProductService);
   constructor() {
     this.dataSource = new MatTableDataSource([] as any);
   }
 
   ngOnInit() {
-    this.getCategories();    
+    this.getFormProducts();    
   }
 
   ngAfterViewInit() {
@@ -47,12 +46,12 @@ export class CategoriesComponent implements OnInit, AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe((res: any) => {
+  getFormProducts(){
+    this.productService.getProducts().subscribe((res: any) => {
       if (res) {
         this.dataSource = new MatTableDataSource(res);
       } else {
-        alert("Cantegories is empty!!!");
+        alert("Products is empty!!!");
       }
     },
     (error) => {
@@ -63,15 +62,15 @@ export class CategoriesComponent implements OnInit, AfterViewInit{
     });
   }
 
-  deleteCategory(id: string){
-    this.categoryService.deleteCategory(id).subscribe((res: any) => {
-      alert("Category is Deleted!!");
+  deleteFormProduct(id: string){
+    this.productService.deleteProduct(id).subscribe((res: any) => {
+      alert("Product is Deleted!!");
     },
     (error) => {
       alert("Error: " + error);
     },
     () => {
-      this.getCategories();
+      this.getFormProducts();
     });
   }
 
