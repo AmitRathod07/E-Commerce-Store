@@ -1,6 +1,12 @@
 const Category = require("../db/category");
 
 async function addCategory(model){
+    let categories = await getCategories();
+    const existingCategpry = await brands.find(category => category.name.toLowerCase() === model.name.toLowerCase());
+    
+    if (existingCategpry) {
+        throw new Error('Categpry with name "' + model.name + '" already exists.');
+    }
     let category = new Category({
         name: model.name
     });

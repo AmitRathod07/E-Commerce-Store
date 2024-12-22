@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CategoryService } from '../../../services/category-service/category.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-category-form',
@@ -12,7 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss'
@@ -60,13 +61,15 @@ export class CategoryFormComponent {
         });
       } else {
         this.categoryService.addCategory(this.name).subscribe((response) => {
-          alert("Category Added.");          
+          alert("Category Added.");
+          this.goBack();
         },
         (error)=>{
-          alert("Error: " + error);
-        },
-        ()=>{
-          this.goBack();
+          if (error.status = 400) {
+            alert('Category with name "' + this.name + '" already exists.');
+          } else {
+            alert("Error: " + error);
+          }
         });
       }      
     } else {

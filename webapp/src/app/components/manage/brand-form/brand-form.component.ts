@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BrandService } from '../../../services/brand-service/brand.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { BrandService } from '../../../services/brand-service/brand.service';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './brand-form.component.html',
   styleUrl: './brand-form.component.scss'
@@ -43,14 +44,14 @@ export class BrandFormComponent {
   }
 
   goBack(){
-    this.router.navigateByUrl("/admin/categories");
+    this.router.navigateByUrl("/admin/brands");
   }
 
   submit(){    
     if (this.name) {
       if (this.isEdit == true) {
         this.brandService.updateBrand(this.id, this.name).subscribe((response) => {
-          alert("Category Updated.");          
+          alert("Brand Updated.");          
         },
         (error)=>{
           alert("Error: " + error);
@@ -60,13 +61,15 @@ export class BrandFormComponent {
         });
       } else {
         this.brandService.addBrand(this.name).subscribe((response) => {
-          alert("Category Added.");          
+          alert("Brand Added.");
+          this.goBack();
         },
         (error)=>{
-          alert("Error: " + error);
-        },
-        ()=>{
-          this.goBack();
+          if (error.status = 400) {
+            alert('Brand with name "' + this.name + '" already exists.');
+          } else {
+            alert("Error: " + error);
+          }
         });
       }      
     } else {

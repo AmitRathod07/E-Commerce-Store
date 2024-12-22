@@ -3,8 +3,11 @@
 <div class="flex flex-col items-left px-40 mt-10">
     <h1 class="text-3xl font-bold mb-10">{{isEdit ? 'Update' : 'Add New'}} Product</h1>
     <form 
-    class="shadow p-4" [formGroup]="productForm" (ngSubmit)="submit()">
+    class="shadow p-4" [formGroup]="productForm">
         <div class="flex flex-wrap">
+            <div [hidden]="!isEdit" class="w-full gap-4 mb-4">
+                <label for="Id">Product Id: {{ product_id }}</label>
+            </div> 
             <mat-form-field class="w-full">
                 <mat-label>Category</mat-label>
                 <mat-select formControlName="categoryId">
@@ -68,8 +71,9 @@
                 }                
             </div>
         </div>
-        <div class="w-full flex justify-left">
+        <div class="w-full flex justify-left gap-4">
             <button mat-raised-button color="primary" [disabled]="productForm.invalid">{{ isEdit ? 'Edit' : 'Add' }} Product</button>
+            <button mat-raised-button color="primary" routerLink="/admin/products">Cancel</button>
         </div>
     </form>
 </div>

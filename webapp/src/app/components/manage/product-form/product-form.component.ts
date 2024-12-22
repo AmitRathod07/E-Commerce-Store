@@ -9,7 +9,7 @@ import { Category } from '../../../types/category';
 import { CategoryService } from '../../../services/category-service/category.service';
 import { BrandService } from '../../../services/brand-service/brand.service';
 import { ProductService } from '../../../services/product-service/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -18,7 +18,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterLink
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
@@ -54,21 +55,10 @@ export class ProductFormComponent implements OnInit{
   ngOnInit(): void {
     this.product_id = this.route.snapshot.params["product_id"];
     if (this.product_id) {
-      this.isEdit = true;
-      this.productService.getProductById(this.product_id).subscribe((product: any) => {
-        if (product) {
-          let formValue = this.productForm.value;
-          formValue.name = product.name;
-          formValue.shortDescription = product.shortDescription;
-          formValue.description = product.description;
-          
-        } else {
-          
-        }
-      });
-    }
-
-    this.addImage();
+      this.getProduct();
+    } else {
+      this.addImage();
+    }    
     this.categoryService.getCategories().subscribe((result) => {
       this.categories = result;
     });
@@ -77,8 +67,36 @@ export class ProductFormComponent implements OnInit{
     });
   }
 
-  addImage() {
-    this.images.push(this.formBuilder.control(null));
+  getProduct(){
+    this.isEdit = true;
+    this.productService.getProductById(this.product_id).subscribe((product: any) => {
+      if (product) {
+        this.productForm.patchValue({
+          name: product.name,
+          shortDescription: product.shortDescription,
+          description: product.description,
+          Price: product.Price,
+          discount: product.discount,
+          categoryId: product.categoryId,
+          brandId: product.brandId
+        });
+        if (product.images.length > 0) {
+          this.images.clear();
+          for (const imageUrl of product.images) {
+            this.addImage(imageUrl);
+          }
+        }
+      } else {
+        alert("This product could not be found");
+      }
+    },
+    (error)=>{
+      alert("Error: " + error);
+    });
+  }
+
+  addImage(imageUrl?: string) {
+    this.images.push(this.formBuilder.control(imageUrl || null));
   }
 
   removeImage(){
@@ -90,15 +108,29 @@ export class ProductFormComponent implements OnInit{
   }
 
   submit() {
-    let value = this.productForm.value;
-    this.productService.addProduct(value as any).subscribe((result) => {
-      alert("Product Added");
-    },
-    (error)=>{
-      alert("Error: " + error);
-    },
-    ()=>{
-      this.goBack();
-    });
+    if (this.productForm.valid) {
+      let value = this.productForm.value;
+      if (this.isEdit) {
+        this.productService.updateProduct(this.product_id, value as any).subscribe((res)=>{
+          alert("Product updated");
+        },
+        (error)=>{
+          alert("Error: " + error);
+        },
+        ()=>{
+          this.goBack();
+        })
+      } else {        
+        this.productService.addProduct(value as any).subscribe((result) => {
+          alert("Product Added");
+        },
+        (error)=>{
+          alert("Error: " + error);
+        },
+        ()=>{
+          this.goBack();
+        });
+      }
+    }
   }
 }

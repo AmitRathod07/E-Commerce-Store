@@ -26,7 +26,7 @@ import { Category } from '../../../types/category';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit, AfterViewInit{
-  displayedColumns: string[] = ['id', 'name', 'shortDescription', 'description', 'price', 'discount', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'shortDescription', 'price', 'discount', 'actions'];
   dataSource: MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

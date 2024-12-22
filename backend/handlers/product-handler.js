@@ -8,10 +8,12 @@ async function addProduct(model){
 
 async function updateProduct(id, model){
     await Product.findByIdAndUpdate(id, model);
+    return product.toObject();
 }
 
 async function deleteProduct(id){
     await Product.findByIdAndDelete(id);
+    return product.toObject();
 }
 
 async function getAllProducts(){

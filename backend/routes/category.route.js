@@ -4,9 +4,13 @@ const Category = require("../db/category");
 const { addCategory, updateCategory, deleteCategory, getCategories, getCategoryById } = require("../handlers/category-handler");
 
 router.post("",async (req, res) => {
-    let model = req.body;
-    let result = await addCategory(model);
-    res.send(result);
+    try {
+        let model = req.body;
+        let result = await addCategory(model);
+        res.send(result);
+    } catch (error) {
+        res.status(400);
+    }
 });
 
 router.get("", async (req, res) => {
