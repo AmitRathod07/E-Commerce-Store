@@ -1,16 +1,249 @@
-/* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Global Styles for Header and Footer
+$primary-color: #013220; // Dark green for both header and footer background color
+$secondary-color: #f8f8f8; // Light color for text (white for clarity)
+$header-item-hover-underline-color: #fff; // White underline on hover for header items
+$footer-bg-color: $primary-color; // Set footer background to match header background
+$footer-link-color: #ccc; // Light color for footer links
+$footer-link-hover-color: #fff; // White hover color for footer links
+$button-hover-bg: #2b4a8e; // Button hover color
 
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.actions-cell{
-    display: flex;
-    justify-content: center;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.cell-justify{
-    text-align: justify;
+// ----- Header Styles -----
+.ecommerce-header {
+  background-color: $primary-color;  // Dark green background
+  color: $secondary-color;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: $secondary-color;
+      text-transform: uppercase;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+
+      .search-input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 300px;
+      }
+
+      .search-button {
+        padding: 8px 12px;
+        margin-left: 8px;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $button-hover-bg;
+        }
+      }
+    }
+
+    .profile-link {
+      font-size: 16px;
+      color: $secondary-color;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $primary-color; // Dark grey background for the bottom section
+    padding: 12px 0;
+
+    .category-menu {
+      display: flex;
+      gap: 20px;
+      list-style: none; // Remove bullets
+
+      li {
+        display: inline-block; // Ensure they line up horizontally
+      }
+
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background-color: $primary-color; // Dark grey background for items
+
+        // Underline with animation on hover
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: $header-item-hover-underline-color; // White color for underline
+          bottom: 0;
+          left: 0;
+          transform: scaleX(0); // Start with no underline
+          transform-origin: bottom right;
+          transition: transform 0.3s ease-out;
+        }
+
+        &:hover {
+          color: $secondary-color;
+          background-color: $primary-color;
+        }
+
+        &:hover::after {
+          transform: scaleX(1); // Animate the underline when hovered
+          transform-origin: bottom left;
+        }
+      }
+    }
+  }
+}
+
+// ----- Footer Styles -----
+.ecommerce-footer {
+  background-color: $footer-bg-color;  // Dark green background for footer
+  color: $footer-link-color;
+  padding: 32px 0;
+  font-size: 14px;
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 32px;
+    padding: 0 16px;
+
+    .footer-section {
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: $secondary-color;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        .footer-link {
+          display: block;
+          margin-bottom: 8px;
+          color: $footer-link-color;
+          text-decoration: none;
+
+          &:hover {
+            color: $footer-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    background-color: #111;
+    color: $footer-link-color;
+    padding: 16px;
+    text-align: center;
+
+    .payment-options {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      img {
+        opacity: 0.8;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    p {
+      font-size: 12px;
+      color: #ccc;
+    }
+  }
+}
+
+// All Form Feilds Style
+.form_fields{
+    display: flex;
+    flex-direction: column;
+    padding: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    justify-items: center;
+}
+
+.product_img_header{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product_img_input{
+    display: flex;
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+// Responsive Design for Mobile Devices
+@media (max-width: 768px) {
+  .ecommerce-header .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ecommerce-header .header-bottom {
+    .category-menu {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  .ecommerce-footer .footer-top {
+    grid-template-columns: 1fr;
+  }
 }

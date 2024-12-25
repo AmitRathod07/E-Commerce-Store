@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Brand } from '../../../types/brand';
 import { Category } from '../../../types/category';
 import { CategoryService } from '../../../services/category-service/category.service';
@@ -19,6 +20,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatCheckboxModule,
     RouterLink
   ],
   templateUrl: './product-form.component.html',
@@ -45,7 +47,9 @@ export class ProductFormComponent implements OnInit{
     discount: [],
     images: this.formBuilder.array([]),
     categoryId: [null, [Validators.required]],
-    brandId: [null, [Validators.required]]
+    brandId: [null, [Validators.required]],
+    isFeatured: [false],
+    isNew: [false]
   });
 
   get images(){
@@ -77,8 +81,8 @@ export class ProductFormComponent implements OnInit{
           description: product.description,
           Price: product.Price,
           discount: product.discount,
-          categoryId: product.categoryId,
-          brandId: product.brandId
+          categoryId: product.categoryId[0],
+          brandId: product.brandId[0]
         });
         if (product.images.length > 0) {
           this.images.clear();
@@ -132,5 +136,7 @@ export class ProductFormComponent implements OnInit{
         });
       }
     }
+    console.log("Form: ", this.productForm);
+    
   }
 }

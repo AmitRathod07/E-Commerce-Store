@@ -30,7 +30,7 @@ async function updateBrand(id, model){
 }
 
 async function deleteBrand(id){
-    await Brand.findByIdAndRemove(id);
+    await Brand.findByIdAndDelete(id);
     return;
 }
 

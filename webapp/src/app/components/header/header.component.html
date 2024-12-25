@@ -1,0 +1,38 @@
+<header class="ecommerce-header bg-gray-800 text-white">
+    <!-- Top Line: Logo, Search Bar, and Profile Link -->
+    <div class="header-top flex items-center justify-between px-8 py-4">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/">
+                <img src="logo.png" alt="Logo" class="h-8">
+            </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar w-full mx-8">
+            <input type="text" class="search-input" placeholder="Search for products..." />
+        </div>
+
+        <!-- Profile Link -->
+        <div class="profile">
+            <a href="/profile" class="profile-link flex items-center">
+                <img src="profile-icon.png" alt="Profile" class="h-6 w-6 mr-2">
+                <span>My Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Bottom Line: Category Menu -->
+    <nav class="header-bottom px-8 py-2">
+        <ul class="category-menu flex justify-between">
+            @for (category of categoryList; track $index) {
+                <li><a>{{category.name}}</a></li>
+            }
+            <!-- <li><a href="/category/electronics">Electronics</a></li>
+            <li><a href="/category/fashion">Fashion</a></li>
+            <li><a href="/category/home-appliances">Home Appliances</a></li>
+            <li><a href="/category/books">Books</a></li>
+            <li><a href="/category/toys">Toys</a></li> -->
+        </ul>
+    </nav>
+</header>

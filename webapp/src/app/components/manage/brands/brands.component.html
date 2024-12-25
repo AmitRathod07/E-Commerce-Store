@@ -31,7 +31,7 @@
             <button mat-mini-fab color="accent" class="mr-2" [routerLink]="'/admin/brands/edit/' + row._id">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-mini-fab color="warn" class="ml-2" (click)="deleteFormBrand(row.id)">
+            <button mat-mini-fab color="warn" class="ml-2" (click)="deleteFormBrand(row._id)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

@@ -6,13 +6,19 @@ async function addProduct(model){
     return product.toObject();
 }
 
-async function updateProduct(id, model){
-    await Product.findByIdAndUpdate(id, model);
+async function updateProduct(id, model) {
+    const product = await Product.findByIdAndUpdate(id, model, { new: true });
+    if (!product) {
+        throw new Error(`Product with ID ${id} not found`);
+    }
     return product.toObject();
 }
 
 async function deleteProduct(id){
-    await Product.findByIdAndDelete(id);
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) {
+        throw new Error(`Product with ID ${id} not found.`)
+    }
     return product.toObject();
 }
 
