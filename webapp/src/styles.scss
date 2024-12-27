@@ -164,6 +164,13 @@ body {
           }
         }
       }
+
+      .social-links{
+        a {
+          margin-right: 8px;
+          margin-left: 8px;
+        }
+      }
     }
   }
 
@@ -197,7 +204,7 @@ body {
 }
 
 // All Form Feilds Style
-.form_fields{
+.main-container{
     display: flex;
     flex-direction: column;
     padding: 15%;
@@ -246,4 +253,22 @@ body {
   .ecommerce-footer .footer-top {
     grid-template-columns: 1fr;
   }
+}
+
+.form-btns{
+  margin-bottom: 10%;
+}
+
+.form-submit{
+  margin-right: 1%;
+}
+
+.form-cancel{
+  margin-left: 1%;
+}
+
+.grid-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

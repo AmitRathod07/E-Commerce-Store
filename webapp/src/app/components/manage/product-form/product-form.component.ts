@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +23,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
     MatCheckboxModule,
     RouterLink
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
 })
@@ -49,7 +50,7 @@ export class ProductFormComponent implements OnInit{
     categoryId: [null, [Validators.required]],
     brandId: [null, [Validators.required]],
     isFeatured: [false],
-    isNew: [false]
+    isNewProduct: [false]
   });
 
   get images(){

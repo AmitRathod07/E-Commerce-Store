@@ -1,9 +1,7 @@
-<!-- Start with this link = https://www.youtube.com/watch?v=bMLg4z2d2kA&list=PL1fhe5A01vQEGcHsPyQk3otWTrq6b9XXB&index=4&t=1478 -->
-
 <div class="flex flex-col items-left px-40 mt-10">
     <h1 class="text-3xl font-bold text-center mb-10">{{isEdit ? 'Update' : 'Add New'}} Product</h1>
     <form class="shadow p-4" [formGroup]="productForm" (ngSubmit)="submit()">
-        <div class="flex flex-wrap form_fields">
+        <div class="flex flex-wrap main-container">
             <div [hidden]="!isEdit" class="w-full gap-4 mb-4">
                 <label for="Id">Product Id: {{ product_id }}</label>
             </div> 
@@ -50,10 +48,10 @@
                 <input matInput type="text" formControlName="discount" />
             </mat-form-field>
 
-            <div class="w-full flex gap-8">
+            <section class="w-full flex gap-8">
                 <mat-checkbox formControlName="isFeatured">Is Featured</mat-checkbox>
-                <mat-checkbox formControlName="isNew">Is New</mat-checkbox>
-            </div>
+                <mat-checkbox formControlName="isNewProduct">Is New</mat-checkbox>
+            </section>
 
             <div class="w-full flex flex-col" formArrayName="images">
                 <div class="flex justify-between mb-4 product_img_header">
@@ -75,9 +73,9 @@
                 }                
             </div>
         </div>
-        <div class="w-full flex justify-center gap-4 button-container">
-            <button mat-raised-button color="primary" [disabled]="productForm.invalid">{{ isEdit ? 'Edit' : 'Add' }} Product</button>
-            <button mat-raised-button color="primary" routerLink="/admin/products">Cancel</button>
+        <div class="w-full flex justify-center button-container form-btns">
+            <button class="form-submit" mat-raised-button color="primary" [disabled]="productForm.invalid">{{ isEdit ? 'Edit' : 'Add' }} Product</button>
+            <button class="form-cancel" mat-raised-button color="primary" routerLink="/admin/products">Cancel</button>
         </div>
     </form>
 </div>

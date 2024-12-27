@@ -9,5 +9,5 @@ export interface Product {
     categoryId: string;
     brandId: string;
     isFeatured: boolean;
-    isNew: boolean
+    isNewProduct: boolean;
 }
