@@ -15,7 +15,7 @@ body {
 
 // ----- Header Styles -----
 .ecommerce-header {
-  background-color: $primary-color;  // Dark green background
+  background-color: $primary-color; // Dark green background
   color: $secondary-color;
   padding: 16px 32px;
   display: flex;
@@ -27,12 +27,19 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
+    padding: 16px 32px;
 
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: $secondary-color;
       text-transform: uppercase;
+
+      .web-img {
+        width: 9%;
+        height: 9%;
+        border-radius: 15%;
+      }
     }
 
     .search-bar {
@@ -71,6 +78,13 @@ body {
       &:hover {
         text-decoration: underline;
       }
+
+      .profileImg {
+        height: 9%;
+        width: 9%;
+        border-radius: 50%;
+        margin-left: 97%;
+      }
     }
   }
 
@@ -100,6 +114,7 @@ body {
 
         // Underline with animation on hover
         position: relative;
+
         &::after {
           content: "";
           position: absolute;
@@ -116,6 +131,7 @@ body {
         &:hover {
           color: $secondary-color;
           background-color: $primary-color;
+          cursor: pointer;
         }
 
         &:hover::after {
@@ -129,7 +145,7 @@ body {
 
 // ----- Footer Styles -----
 .ecommerce-footer {
-  background-color: $footer-bg-color;  // Dark green background for footer
+  background-color: $footer-bg-color; // Dark green background for footer
   color: $footer-link-color;
   padding: 32px 0;
   font-size: 14px;
@@ -165,7 +181,7 @@ body {
         }
       }
 
-      .social-links{
+      .social-links {
         a {
           margin-right: 8px;
           margin-left: 8px;
@@ -204,36 +220,36 @@ body {
 }
 
 // All Form Feilds Style
-.main-container{
-    display: flex;
-    flex-direction: column;
-    padding: 15%;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    justify-items: center;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15%;
+  padding-top: 5%;
+  padding-bottom: 0;
+  justify-items: center;
 }
 
-.product_img_header{
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
+.product_img_header {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
 }
 
-.product_img_input{
-    display: flex;
-    width: 100%;
+.product_img_input {
+  display: flex;
+  width: 100%;
 }
 
 .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  height: 100%;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 // Responsive Design for Mobile Devices
@@ -255,20 +271,31 @@ body {
   }
 }
 
-.form-btns{
+.form-btns {
   margin-bottom: 10%;
 }
 
-.form-submit{
+.form-submit {
   margin-right: 1%;
 }
 
-.form-cancel{
+.form-cancel {
   margin-left: 1%;
 }
 
-.grid-view{
+.grid-view {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.add_btn {
+  display: flex;
+  align-self: center;
+}
+
+.product-table {
+  table {
+    width: 100px;
+  }
 }

@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 app.use("/category", categoryRoutes);
 app.use("/brand", brandRoutes);
 app.use("/product", productRoutes);
-app.use("/customer", custmerRoutes)
+app.use("/customer", custmerRoutes);
 
 async function connectDB(){
     await mongoose.connect("mongodb://127.0.0.1:27017/myapp",{

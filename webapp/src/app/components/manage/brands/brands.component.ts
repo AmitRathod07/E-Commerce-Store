@@ -49,28 +49,26 @@ export class BrandsComponent implements OnInit, AfterViewInit{
   getFormBrands(){
     this.brandService.getBrands().subscribe((res: any) => {
       if (res) {
-        this.dataSource = new MatTableDataSource(res);
+        // this.dataSource = new MatTableDataSource(res);
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       } else {
         alert("Brands is empty!!!");
       }
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () =>{
-
     });
   }
 
   deleteFormBrand(id: string){
     this.brandService.deleteBrand(id).subscribe((res: any) => {
       alert("Brand is Deleted!!");
+      this.getFormBrands();
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () => {
-      this.getFormBrands();
     });
   }
 

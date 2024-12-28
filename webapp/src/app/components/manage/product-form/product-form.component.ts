@@ -83,7 +83,9 @@ export class ProductFormComponent implements OnInit{
           Price: product.Price,
           discount: product.discount,
           categoryId: product.categoryId[0],
-          brandId: product.brandId[0]
+          brandId: product.brandId[0],
+          isFeatured: product.isFeatured,
+          isNewProduct: product.isNewProduct
         });
         if (product.images.length > 0) {
           this.images.clear();

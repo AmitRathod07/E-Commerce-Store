@@ -50,28 +50,26 @@ export class CategoriesComponent implements OnInit, AfterViewInit{
   getCategories(){
     this.categoryService.getCategories().subscribe((res: any) => {
       if (res) {
-        this.dataSource = new MatTableDataSource(res);
+        // this.dataSource = new MatTableDataSource(res);
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       } else {
         alert("Cantegories is empty!!!");
       }
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () =>{
-
     });
   }
 
   deleteCategory(id: string){
     this.categoryService.deleteCategory(id).subscribe((res: any) => {
       alert("Category is Deleted!!");
+      this.getCategories();
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () => {
-      this.getCategories();
     });
   }
 

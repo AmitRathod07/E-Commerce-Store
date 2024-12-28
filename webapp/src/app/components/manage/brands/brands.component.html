@@ -1,9 +1,9 @@
 <div class="px-40 mt-10">
-  <div class="flex justify-between">
+  <div class="flex justify-center grid-view">
     <h1 class="text-3xl font-bold mb-10">Manage Brand</h1>
-    <button mat-raised-button color="primary" routerLink="/admin/brands/add">Add Brand</button>
+    <button class="add_btn" mat-raised-button color="primary" routerLink="/admin/brands/add">Add Brand</button>
   </div>  
-  <div class="shadow">
+  <div class="shadow main-container">
     <mat-form-field class="w-full">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>

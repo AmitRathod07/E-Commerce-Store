@@ -21,7 +21,5 @@ export class HomeComponent implements OnInit{
     this.customerService.getNewProduct().subscribe((result) => {
       this.newProducts.push(result);
     });
-    console.log("featured products: ", this.featuredProducts);
-    console.log("New products: ", this.newProducts);    
   }
 }

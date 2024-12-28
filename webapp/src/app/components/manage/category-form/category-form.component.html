@@ -1,7 +1,7 @@
 <div class="flex flex-col items-left px-40 mt-10">
     <h1 class="text-3xl font-bold mb-10">{{isEdit ? 'Update' : 'Add New'}} Category</h1>
     <form class="shadow-sm w-96" (ngSubmit)="submit()">
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap main-container">
             <div [hidden]="!isEdit" class="w-full gap-4 mb-4">
                 <label for="Id">Category Id: {{ id }}</label>
             </div> 
@@ -11,7 +11,7 @@
                     <input matInput type="text" [(ngModel)]="name" name="category name">
                 </mat-form-field>
             </div>
-            <div class="w-full flex justify-left gap-4">
+            <div class="w-full flex justify-left gap-4 form-btns">
                 <button mat-raised-button color="primary" [disabled]="!name">{{ isEdit ? 'Edit' : 'Add' }}</button>
                 <button mat-raised-button color="primary" routerLink="/admin/categories">Cancel</button>
             </div>

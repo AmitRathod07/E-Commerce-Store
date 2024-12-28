@@ -49,28 +49,26 @@ export class ProductsComponent implements OnInit, AfterViewInit{
   getFormProducts(){
     this.productService.getProducts().subscribe((res: any) => {
       if (res) {
-        this.dataSource = new MatTableDataSource(res);
+        // this.dataSource = new MatTableDataSource(res);
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       } else {
         alert("Products is empty!!!");
       }
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () =>{
-
     });
   }
 
   deleteFormProduct(id: string){
     this.productService.deleteProduct(id).subscribe((res: any) => {
       alert("Product is Deleted!!");
+      this.getFormProducts();
     },
     (error) => {
       alert("Error: " + error);
-    },
-    () => {
-      this.getFormProducts();
     });
   }
 

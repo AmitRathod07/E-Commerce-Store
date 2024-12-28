@@ -1,1 +1,11 @@
-<!-- Start with this link = https://www.youtube.com/watch?v=bMLg4z2d2kA&list=PL1fhe5A01vQEGcHsPyQk3otWTrq6b9XXB&index=4&t=1478 -->
+<!-- Start with this link = https://youtu.be/bMLg4z2d2kA?si=WZ6Edw2FLxwaMU9z&t=2330 -->
+<div>
+    <h4 class="text-2xl font-bold">Featured Products</h4>
+    <div class="flex flex-wrap gap-1">
+        @for (product of featuredProducts; track $index) {
+            <div class="w-4/12 shadow h-16">
+                <h4>{{product.name}}</h4>
+            </div>
+        }
+    </div>
+</div>
