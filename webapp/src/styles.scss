@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 // Global Styles for Header and Footer
 $primary-color: #013220; // Dark green for both header and footer background color
 $secondary-color: #f8f8f8; // Light color for text (white for clarity)

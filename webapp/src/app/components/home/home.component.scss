@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the gap as needed */
+}
+
+.w-3by12 {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 16px; /* Padding to add space between the cards */
+}

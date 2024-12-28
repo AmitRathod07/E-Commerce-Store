@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../../types/product';
+import { environment_dev } from '../../../environments/environment.development';
+// import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,14 @@ export class CustomerService {
   constructor() { }
 
   getNewProduct(){
-    return this.http.get<Product>("http://myshop.test/customer/new-products");
+    return this.http.get<Product[]>(
+      environment_dev.apiurl + '/customer/new-products'
+    );
   }
 
   getFeaturedProduct(){
-    return this.http.get<Product>("http://myshop.test/customer/featured-products");
+    return this.http.get<Product[]>(
+      environment_dev.apiurl + '/customer/featured-products'
+    );
   }
 }

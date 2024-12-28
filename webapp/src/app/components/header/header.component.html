@@ -3,19 +3,19 @@
     <div class="header-top flex items-center justify-between px-8 py-4">
         <!-- Logo -->
         <div class="logo">
-            <a href="/home">
+            <a href="/">
                 <img src="../../../assets/images/websitelogo.png" alt="Logo" class="web-img">
             </a>
         </div>
 
         <!-- Search Bar -->
         <div class="search-bar w-full mx-8">
-            <input type="text" class="search-input" placeholder="Search for products..." />
+            <input type="text" class="search-input" placeholder="Search for products..." (keyup.enter)="onSearch($event)" />
         </div>
 
         <!-- Profile Link -->
         <div class="profile">
-            <a href="/profile" class="profile-link flex items-center">
+            <a href="/" class="profile-link flex items-center">
                 <img src="../../../assets/images/profielogo.png" alt="Profile" class="profileImg mr-2">
             </a>
         </div>
@@ -25,7 +25,7 @@
     <nav class="header-bottom px-8 py-2">
         <ul class="category-menu flex justify-between">
             @for (category of categoryList; track $index) {
-                <li><a>{{category.name}}</a></li>
+                <li (click)="searchCategory(category._id)"><a>{{category.name}}</a></li>
             }
             <!-- <li><a href="/category/electronics">Electronics</a></li>
             <li><a href="/category/fashion">Fashion</a></li>
