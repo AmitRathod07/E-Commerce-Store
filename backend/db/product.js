@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
     categoryId: [{ type: Schema.Types.ObjectId, ref: 'categories' }],
     brandId: [{ type: Schema.Types.ObjectId, ref: 'brands' }],
     isFeatured: Boolean,
-    isNew: Boolean
+    isNewProduct: Boolean
 });
 const Product = mongoose.model("products", productSchema);
 module.exports = Product;

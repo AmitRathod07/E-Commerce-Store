@@ -15,7 +15,7 @@ export class ProductCardComponent {
   getShortDescription(description: string): string {
     const maxLength = 40; // Adjust the length as needed
     if (description.length > maxLength) {
-      return `${description.substring(0, maxLength)}... <a href="#" style="color: blue;">See More</a>`;
+      return `${description.substring(0, maxLength)}... <a class="text-blue-600 cursor-pointer">See More</a>`;
     }
     
     return description;

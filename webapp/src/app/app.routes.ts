@@ -7,9 +7,13 @@ import { BrandFormComponent } from './components/manage/brand-form/brand-form.co
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     { path:"", component: HomeComponent},
+    { path:"register", component: RegisterComponent},
+    { path:"login", component: LoginComponent},
     { path:"admin/categories", component: CategoriesComponent},
     { path:"admin/categories/add", component: CategoryFormComponent},
     { path:"admin/categories/edit/:id", component: CategoryFormComponent},

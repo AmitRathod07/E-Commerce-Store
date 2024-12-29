@@ -1,11 +1,11 @@
-<!-- Start with part 6 = https://youtu.be/-J67zX0d8sM?si=AX1uafYP7fz3Pyh- -->
+<!-- Start with part 5 = https://youtu.be/-J67zX0d8sM?si=mV70gI2imcsDueBr&t=2905 -->
 <div class="px-20">
     <div class="shadow">
         <owl-carousel-o [options]="customOptions">
-            @for (img of bannerImages; track $index) {
+            @for (img of bannerImages; track $index) { 
                 <ng-template carouselSlide>
-                    <div class="relative flex flex-col items-center" [routerLink]="'product/'+img._id">
-                        <img [src]="img.images[0]" alt="images">
+                    <div class="relative flex flex-col items-center justify-center h-screen" [routerLink]="'product/'+img._id">
+                        <img [src]="img.images[0]" alt="images" class="w-full h-auto object-cover">
                         <span>{{img.name}}</span>
                     </div>
                 </ng-template>
