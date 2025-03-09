@@ -1,5 +1,6 @@
 const express = require("express");
 const { getNewProducts, getFeaturedProducts } = require("../handlers/product-handler");
+const { getCategories } = require("../handlers/category-handler");
 const router = express.Router();
 
 router.get("/new-products", async (req, res) => {
@@ -21,6 +22,17 @@ router.get("/featured-products", async (req, res) => {
     } catch (err) {
         console.error("Error fetching featured products:", err);
         res.status(500).send({ error: "Failed to fetch featured products" });
+    }
+});
+
+router.get("/categories", async (req, res) => {
+    console.log("Received request for featured products");
+    try {
+        const categories = await getCategories();
+        res.send(categories);
+    } catch (err) {
+        console.error("Error fetching categories:", err);
+        res.status(500).send({ error: "Failed to fetch categories" });
     }
 });
 

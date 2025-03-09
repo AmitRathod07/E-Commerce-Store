@@ -12,10 +12,47 @@ export class AuthenticationService {
   constructor() { }
 
   getRegister(userInfo: any) {
-    return this.http.post(this.base_url + '/auth/register', { body: userInfo });
+    return this.http.post(this.base_url + '/auth/register', userInfo);
   }
 
   getLogin(loginInfo: any) {
-    return this.http.post(this.base_url + '/auth/login', { body: loginInfo });
+    return this.http.post(this.base_url + '/auth/login', loginInfo);
+  }
+
+  get userName() {
+    let userData = localStorage.getItem('user');
+    if (userData) {
+      return JSON.parse(userData).name;
+    }
+    return null;
+  }
+
+  get userEmail() {
+    let userData = localStorage.getItem('user');
+    if (userData) {
+      return JSON.parse(userData).email;
+    }
+    return null;
+  }
+
+  get isLoggedIn() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      return true;
+    }
+    return false;
+  }
+
+  get isAdmin() {
+    let userData = localStorage.getItem('user');
+    if (userData) {
+      return JSON.parse(userData).isAdmin;
+    }
+    return false;
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   }
 }

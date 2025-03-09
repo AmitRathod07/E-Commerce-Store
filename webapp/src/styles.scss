@@ -22,7 +22,7 @@ body {
 .ecommerce-header {
   background-color: $primary-color; // Dark green background
   color: $secondary-color;
-  padding: 16px 32px;
+  padding: 5px 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,6 +89,31 @@ body {
         width: 9%;
         border-radius: 50%;
         margin-left: 97%;
+      }
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column; // Stack items vertically
+      align-items: flex-end; // Align items to the start (left)
+
+      .username {
+        width: 100px;
+        align-items: flex-end;
+        text-align: right;
+      }
+
+      h6 {
+        width: 123px;
+      }
+
+      a {
+        text-decoration: none; // Remove underlines from links
+        margin-bottom: 5px; // Add some space between name and logout
+
+        &:last-child { // Select the logout link
+          margin-bottom: 0; // Remove bottom margin from logout
+        }
       }
     }
   }

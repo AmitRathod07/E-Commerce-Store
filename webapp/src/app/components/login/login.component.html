@@ -32,7 +32,8 @@
       </section>
       
       <!-- Login Button -->
-      <button mat-flat-button color="primary" class="w-full py-2 text-base font-bold transition-transform transform hover:scale-105 duration-300 ease-in-out">
+      <button mat-flat-button color="primary" [disabled]="loginForm.invalid"
+        class="w-full py-2 text-base font-bold transition-transform transform hover:scale-105 duration-300 ease-in-out">
         Login
       </button>
     </form>

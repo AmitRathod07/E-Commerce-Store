@@ -39,9 +39,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       // Handle form submission
       let request = this.loginForm.value;
-      this.authService.getLogin(request).subscribe((res)=>{
+      this.authService.getLogin(request).subscribe((res: any)=>{
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user", JSON.stringify(res.user));
         alert("Login Successfully!");
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/']);
       },
       (error)=>{
         alert("Error: " + error);

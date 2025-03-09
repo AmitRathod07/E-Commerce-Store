@@ -32,11 +32,15 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      let request = this.registerForm.value;
+      let request = {
+        name: this.registerForm?.value.name,
+        email: this.registerForm?.value.email,
+        password: this.registerForm?.value.password
+      };
       // Handle form submission
       this.authService.getRegister(request).subscribe((res)=>{
         alert("Register Successfully!");
-        this.router.navigate(['/']);
+        this.router.navigateByUrl('/login');
       },
       (error)=>{
         alert("Error: " + error);

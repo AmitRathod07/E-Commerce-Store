@@ -15,23 +15,39 @@
 
         <!-- Profile Link -->
         <div class="profile">
-            <a href="/" class="profile-link flex items-center">
+            <!-- <a href="/" class="profile-link flex items-center">
                 <img src="../../../assets/images/profielogo.png" alt="Profile" class="profileImg mr-2">
-            </a>
+            </a> -->
+            @if (authService.isAdmin) {
+                <a href="/admin" class="username">{{authService.userName}}</a>
+            } @else {
+                <a href="/profile" class="username">{{authService.userName}}</a>
+            }
+            
+            @if (authService.isLoggedIn) {
+                <a href="/" (click)="logout()" class="cursor-pointer">Logout</a>
+            } @else {
+                <h6>
+                    <a href="/login" class="cursor-pointer">Log In</a> | 
+                    <a href="/register" class="cursor-pointer">Register</a>
+                </h6>
+            }
         </div>
     </div>
 
-    <!-- Bottom Line: Category Menu -->
-    <nav class="header-bottom px-8 py-2">
-        <ul class="category-menu flex justify-between">
-            @for (category of categoryList; track $index) {
-                <li (click)="searchCategory(category._id)"><a>{{category.name}}</a></li>
-            }
-            <!-- <li><a href="/category/electronics">Electronics</a></li>
-            <li><a href="/category/fashion">Fashion</a></li>
-            <li><a href="/category/home-appliances">Home Appliances</a></li>
-            <li><a href="/category/books">Books</a></li>
-            <li><a href="/category/toys">Toys</a></li> -->
-        </ul>
-    </nav>
+    @if (authService.isLoggedIn) {
+        <!-- Bottom Line: Category Menu -->
+        <nav class="header-bottom px-8 py-2">
+            <ul class="category-menu flex justify-between">
+                @for (category of categoryList; track $index) {
+                    <li (click)="searchCategory(category._id)"><a>{{category.name}}</a></li>
+                }
+                <!-- <li><a href="/category/electronics">Electronics</a></li>
+                <li><a href="/category/fashion">Fashion</a></li>
+                <li><a href="/category/home-appliances">Home Appliances</a></li>
+                <li><a href="/category/books">Books</a></li>
+                <li><a href="/category/toys">Toys</a></li> -->
+            </ul>
+        </nav>
+    }
 </header>
