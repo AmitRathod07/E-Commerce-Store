@@ -1,5 +1,5 @@
 const express = require("express");
-const { getNewProducts, getFeaturedProducts } = require("../handlers/product-handler");
+const { getNewProducts, getFeaturedProducts, getProductForListing } = require("../handlers/product-handler");
 const { getCategories } = require("../handlers/category-handler");
 const router = express.Router();
 
@@ -34,6 +34,12 @@ router.get("/categories", async (req, res) => {
         console.error("Error fetching categories:", err);
         res.status(500).send({ error: "Failed to fetch categories" });
     }
+});
+
+router.get("/products", async (req, res) => {
+    const { searchTerm, categoryId, sortBy, sortOrder, brandId } = req.query;
+    const products = await getProductForListing(searchTerm, categoryId, sortBy, sortOrder, brandId);
+    res.send(products);
 });
 
 module.exports = router;

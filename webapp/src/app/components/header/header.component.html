@@ -10,7 +10,7 @@
 
         <!-- Search Bar -->
         <div class="search-bar w-full mx-8">
-            <input type="text" class="search-input" placeholder="Search for products..." (keyup.enter)="onSearch($event)" />
+            <input type="text" class="search-input" placeholder="Search for products..." [(ngModel)]="searchTerm" (keyup.enter)="onSearch($event)" />
         </div>
 
         <!-- Profile Link -->

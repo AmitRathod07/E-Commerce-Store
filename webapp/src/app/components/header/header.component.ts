@@ -4,10 +4,11 @@ import { Category } from '../../types/category';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication-service/authentication.service';
 import { CustomerService } from '../../services/customer-service/customer.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit{
   categoryService = inject(CategoryService);
   categoryList: Category[] = [];
   router = inject(Router);
+  searchTerm!: string;
 
   ngOnInit(){
     this.customerService.getCategories().subscribe((res)=>{
@@ -32,6 +34,7 @@ export class HeaderComponent implements OnInit{
   }
 
   searchCategory(id: any){
+    this.searchTerm = "";
     this.router.navigateByUrl("/products?category="+id);
   }
 

@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Product } from '../../types/product';
 import { environment_dev } from '../../../environments/environment.development';
 import { Category } from '../../types/category';
+import { environment } from '../../../environments/environment';
 // import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -28,5 +29,9 @@ export class CustomerService {
     return this.http.get<Category[]>(
       environment_dev.apiurl + '/customer/categories'
     );
+  }
+
+  getProducts(searchTerm: string, categoryId: string, sortBy: string, sortOrder: string, brandId: string) {
+    return this.http.get<Product[]>(environment.apiurl + `/customer/products?searchTerm=${searchTerm}&categoryId=${categoryId}&sortBy=${sortBy}&sortOrder=${sortOrder}&brandId=${brandId}`)
   }
 }
